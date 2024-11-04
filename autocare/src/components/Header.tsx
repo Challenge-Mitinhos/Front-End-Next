@@ -67,7 +67,10 @@ export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,seg
           )}
           {login === "logado" && (
             <li>
-              <HeaderComponent name="Sair" onClick={() => toggleLogin()} strong />
+              <HeaderComponent name="Sair" onClick={() => {
+                    toggleLogin()
+                    localStorage.removeItem("id")
+                  }} strong />
             </li>
           )}
         </ul>
@@ -119,7 +122,10 @@ export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,seg
               )}
               {login === "logado" && (
                 <li className="self-start">
-                  <HeaderComponent name="Sair" onClick={() => toggleLogin()} strong fontSize="1.7em" />
+                  <HeaderComponent name="Sair" onClick={() => {
+                    toggleLogin()
+                    localStorage.removeItem("id")
+                  }} strong fontSize="1.7em" />
                 </li>
               )}
             </ul>

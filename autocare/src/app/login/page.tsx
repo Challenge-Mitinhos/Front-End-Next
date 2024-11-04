@@ -5,10 +5,11 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from "yup";
 import Axios from "axios";
 import Link from 'next/link';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '@/context/LoginContext';
 import { useRouter } from 'next/navigation';
 import Spinner from '@/components/Loading';
+import { toast } from 'react-toastify';
 
 interface Values {
   email: string;
@@ -19,6 +20,22 @@ export default function login() {
   const navigate = useRouter();
   const context = useContext(LoginContext);
   const [isLoading, setLoading] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      setIsDarkMode(darkModeQuery.matches);
+
+      const handleChange = (event: { matches: boolean | ((prevState: boolean) => boolean); }) => {
+          setIsDarkMode(event.matches);
+      };
+
+      darkModeQuery.addEventListener('change', handleChange);
+
+      return () => {
+          darkModeQuery.removeEventListener('change', handleChange);
+      };
+  }, []);
 
   if (!context) {
     throw new Error("LoginComponent LoginProvider")
@@ -27,22 +44,34 @@ export default function login() {
   const { toggleLogin } = context;
   const [lockOpen, setLockOpen] = useState(false);
 
-  const handleClick = (values:Values) => {
-    setLoading(!isLoading)
-    Axios.post("https://back-end-autocare.vercel.app/login", {
+  const handleClick = async (values:Values) => {
+    setLoading(true)
+    Axios.post("http://localhost:8080/Java_Web/api/clientes/login", {
       email: values.email,
       senha: values.senha
     }).then((response) => {
-      setLoading(false)
       if (response.status === 200) {
         toggleLogin();
-        if (isChecked) {
-          localStorage.setItem("id", JSON.stringify(response.data.id))
-        }
+        toast.success("Usuário logado!", {theme: (isDarkMode?"dark":"light")})
+        // if (isChecked) {
+          localStorage.setItem("id", JSON.stringify(response.data.clienteId))
+        // }
         navigate.replace("/");
       }
+    }).catch(function (error) {
+      console.error(error);
     });
   };  
+
+  useEffect(() => {
+    if (isLoading) {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 5000);
+
+      return () => clearTimeout(timer)
+    }
+  }, [isLoading])
 
   const validationLogin = yup.object().shape({
     email: yup

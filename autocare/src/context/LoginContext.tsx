@@ -1,5 +1,6 @@
-"use client"
-import { createContext, useEffect, useState } from "react";
+"use client";
+
+import { createContext, useState } from "react";
 
 type LoginContextType = {
     login: "logado" | "deslogado",

@@ -19,7 +19,7 @@ export default function page() {
 
     return (
         <>
-            <Header primeiroLink="Início" segundoLink="ChatBot" ultimoLink="" primeiroLinkDestino="/"/>
+            <Header primeiroLink="Início" segundoLink="ChatBot" ultimoLink="Entrar" primeiroLinkDestino="/" segundoLinkDestino="/chatbot" ultimoLinkDestino="/login"/>
             <div className="Content">
                 <ScrollTop/>
                 <div className="FirstSection">
