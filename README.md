@@ -35,6 +35,9 @@ O AutoCare utiliza modelos de processamento de linguagem natural (NLP) para anal
 Confira o vídeo de apresentação do projeto no YouTube:  
 [Apresentação AutoCare](https://youtu.be/IYDUvRoJaeQ)
 
+## Deploy do projeto:
+[Vercel](https://frontend-next-autocare.vercel.app)
+
 ---
 
 ## Como Executar o Projeto
