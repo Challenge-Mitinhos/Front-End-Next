@@ -7,7 +7,6 @@ import React, { useEffect, useState } from 'react'
 import Axios from "axios";
 import { toast } from 'react-toastify';
 import { ProtectedRoute } from '../protected';
-import Car from '@/components/perfil/Car';
 import PageCars from '@/components/perfil/PageCars';
 import AdicionarVeiculos from '@/components/perfil/AdicionarVeiculos';
 
@@ -22,11 +21,10 @@ interface ProfileValues {
 }
 
 interface CustomFieldProps {
-    className: string,
-    value?:string|number;
+    className: string
 }
 
-const TelField = ({ className,value }:CustomFieldProps) => {
+const TelField = ({ className }:CustomFieldProps) => {
     const { setFieldValue } = useFormikContext<ProfileValues>();
 
     const handleTelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,7 +95,7 @@ const validationUpdate = yup.object().shape({
     .required("Campo obrigatório")
 })
 
-export default function perfil() {
+export default function Perfil() {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     const handleUpdate = (values:ProfileValues) => {
@@ -277,17 +275,9 @@ export default function perfil() {
     
     const [botao, setBotao] = useState<"Perfil"|"Veiculos"|"AdicionarVeiculo">("Perfil")
 
-    const Carros = [
-        {
-            id: 2,
-            modelo: "HB20",
-            placa: "GGR-9C00",
-            marca: "Hyundai"
-        }
-    ]
 
     return (
-        // <ProtectedRoute>
+        <ProtectedRoute>
         <>
             <Header primeiroLink='Início' segundoLink='Time' terceiroLink='Chatbot' primeiroLinkDestino='/' segundoLinkDestino='/time' terceiroLinkDestino='/chatbot' ultimoLink='Sair' perfil sair/>
             <div className='background-perfil'>
@@ -309,6 +299,6 @@ export default function perfil() {
                 </div>
             </div>
         </>
-        // </ProtectedRoute>
+        </ProtectedRoute>
     )
 }

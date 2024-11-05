@@ -14,8 +14,7 @@ const scrollToFunction = (selected:string): (() => void) => {
     }
 }
 
-export default function page() {
-    const logged = false;
+export default function Time() {
 
     return (
         <>
@@ -44,16 +43,16 @@ export default function page() {
                                 </Link>
                                 <Link href="https://instagram.com/011mikael" target="_blank" >
                                     <div>
-                                        <img style={{height: "27.42px", width: "24px"}} src="/img/instagram-brands-solid.svg" alt="Instagram icon" />
+                                        <Image  width="1" height="1" src="/img/instagram-brands-solid.svg" alt="Instagram icon" style={{height: "27.42px", width: "24px"}}/>
                                     </div>
                                 </Link>
                                 <Link href="https://www.linkedin.com/in/mikael-sanches/" target="_blank">
                                     <div>
-                                        <img style={{height: "27.42px", width: "24px"}} src="/img/linkedin-in-brands-solid.svg" alt="Linkedin icon" />
+                                        <Image style={{height: "27.42px", width: "24px"}} src="/img/linkedin-in-brands-solid.svg" alt="Linkedin icon" width="1" height="1"/>
                                     </div>
                                 </Link>
                             </div>
-                            <img src="/img/cards/CardMikael.png" alt="foto do colaborador Mikael" className="photo" />
+                            <Image width={322.41} height={322.41} src="/img/cards/CardMikael.png" alt="foto do colaborador Mikael" className="photo" />
                             <i/>
                             <div className="textBlock">
                                 <h1>Mikael Sanches</h1>
@@ -64,21 +63,21 @@ export default function page() {
                             <div className="social">
                                 <Link href="https://github.com/Murilo-Capristo" target="_blank">
                                     <div>
-                                        <img style={{height: "27.42px", width: "24px"}} src="/img/github-brands-solid.svg" alt="GitHub icon"/>
+                                        <Image  width="1" height="1" style={{height: "27.42px", width: "24px"}} src="/img/github-brands-solid.svg" alt="GitHub icon"/>
                                     </div>
                                 </Link>
                                 <Link href="https://instagram.com/capristin" target="_blank" >
                                     <div>
-                                        <img style={{height: "27.42px", width: "24px"}} src="/img/instagram-brands-solid.svg" alt="Instagram icon" />
+                                        <Image  width="1" height="1" style={{height: "27.42px", width: "24px"}} src="/img/instagram-brands-solid.svg" alt="Instagram icon" />
                                     </div>
                                 </Link>
                                 <Link href="https://www.linkedin.com/in/murilo-capristo-78809a306" target="_blank">
                                     <div>
-                                        <img style={{height: "27.42px", width: "24px"}} src="/img/linkedin-in-brands-solid.svg" alt="Linkedin icon" />
+                                        <Image  width="1" height="1" style={{height: "27.42px", width: "24px"}} src="/img/linkedin-in-brands-solid.svg" alt="Linkedin icon" />
                                     </div>
                                 </Link>
                             </div>
-                            <img src="/img/cards/CardMurilo.png" alt="foto do colaborador Murilo" className="photo" />
+                            <Image width={322.41} height={322.41} src="/img/cards/CardMurilo.png" alt="foto do colaborador Murilo" className="photo" />
                             <div className="textBlock">
                                 <h1>Murilo Capristo</h1>
                                 <p>1TDSPM - RM556794</p>
@@ -88,21 +87,21 @@ export default function page() {
                             <div className="social">
                                 <Link href="https://github.com/StaniukaitisPaula" target="_blank">
                                     <div>
-                                        <img style={{height: "27.42px", width: "24px"}} src="/img/github-brands-solid.svg" alt="GitHub icon"/>
+                                        <Image  width="1" height="1" style={{height: "27.42px", width: "24px"}} src="/img/github-brands-solid.svg" alt="GitHub icon"/>
                                     </div>
                                 </Link>
                                 <Link href="https://instagram.com/p_blesaa" target="_blank" >
                                     <div>
-                                        <img style={{height: "27.42px", width: "24px"}} src="/img/instagram-brands-solid.svg" alt="Instagram icon" />
+                                        <Image  width="1" height="1" style={{height: "27.42px", width: "24px"}} src="/img/instagram-brands-solid.svg" alt="Instagram icon" />
                                     </div>
                                 </Link>
                                 <Link href="https://www.linkedin.com/in/paula-blesa-staniukaitis-5ab53224a/" target="_blank">
                                     <div>
-                                        <img style={{height: "27.42px", width: "24px"}} src="/img/linkedin-in-brands-solid.svg" alt="Linkedin icon" />
+                                        <Image  width="1" height="1" style={{height: "27.42px", width: "24px"}} src="/img/linkedin-in-brands-solid.svg" alt="Linkedin icon" />
                                     </div>
                                 </Link>
                             </div>
-                            <img src="/img/cards/CardPaula.png" alt="foto do colaborador Paula" className="photo" />
+                            <Image width={322.41} height={322.41} src="/img/cards/CardPaula.png" alt="foto do colaborador Paula" className="photo" />
                             <div className="textBlock">
                                 <h1>Paula Blesa</h1>
                                 <p>1TDSPM - RM558277</p>

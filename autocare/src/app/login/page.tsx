@@ -16,7 +16,7 @@ interface Values {
   senha: string;
 }
 
-export default function login() {
+export default function Login() {
   const navigate = useRouter();
   const context = useContext(LoginContext);
   const [isLoading, setLoading] = useState(false);

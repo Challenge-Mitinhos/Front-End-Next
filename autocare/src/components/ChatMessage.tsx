@@ -5,10 +5,6 @@ interface ChatMessageProps {
     isUserMessage: boolean;
 }
 
-interface MessageProps {
-    isUserMessage: boolean;
-}
-
 const ChatMessage: React.FC<ChatMessageProps> = ({ text, isUserMessage }) => {
     return (
         <div className={`${isUserMessage?'text-right':'text-left'} mx-2 my-2`}>

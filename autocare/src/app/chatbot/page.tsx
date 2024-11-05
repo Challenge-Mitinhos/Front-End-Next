@@ -6,8 +6,9 @@ import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useRef, useState } from 'react'
 import { ProtectedRoute } from '../protected';
 import { toast } from 'react-toastify';
+import Image from 'next/image';
 
-export default function chatbot() {
+export default function Chatbot() {
     const [messages, setMessages] = useState<string[]>(["AutoCare Bot: Olá, eu sou o AutoCare Bot! Como posso te ajudar?"]);
     const [isLoading, setIsLoading] = useState(false);
     const [dots, setDots] = useState(0);
@@ -47,7 +48,7 @@ export default function chatbot() {
             const data = await response.json();
             setMessages(prevMessages => [...prevMessages, `AutoCare Bot: ${data.resposta}`]);
             setIsLoading(false);
-        } catch (error) {
+        } catch {
             toast.error("Chatbot indisponível",  {theme: (isDarkMode?"dark":"light")})
             setTimeout(() => setIsLoading(false), 3000);
         }
@@ -77,7 +78,7 @@ export default function chatbot() {
         let interval: NodeJS.Timeout;
         if (isLoading) {
             interval = setInterval(() => {
-                setDots(prevDots => (prevDots + 1) % 4);3
+                setDots(prevDots => (prevDots + 1) % 4);
             }, 400);
 
         }
@@ -120,7 +121,7 @@ export default function chatbot() {
                                     className="input-message"
                                 />
                                 <div className="button-send" onClick={submitForm}>
-                                    <img src="/img/send-msg.svg" alt="Send Message Button" />
+                                    <Image width={100} height={100} src="/img/send-msg.svg" alt="Send Message Button" />
                                 </div>
                             </Form>
                         )}
