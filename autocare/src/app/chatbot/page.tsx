@@ -5,31 +5,52 @@ import Header from '@/components/Header'
 import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useRef, useState } from 'react'
 import { ProtectedRoute } from '../protected';
+import { toast } from 'react-toastify';
 
 export default function chatbot() {
     const [messages, setMessages] = useState<string[]>(["AutoCare Bot: Olá, eu sou o AutoCare Bot! Como posso te ajudar?"]);
     const [isLoading, setIsLoading] = useState(false);
     const [dots, setDots] = useState(0);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    useEffect(() => {
+        const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        setIsDarkMode(darkModeQuery.matches);
+
+        const handleChange = (event: { matches: boolean | ((prevState: boolean) => boolean); }) => {
+            setIsDarkMode(event.matches);
+        };
+
+        darkModeQuery.addEventListener('change', handleChange);
+
+        return () => {
+            darkModeQuery.removeEventListener('change', handleChange);
+        };
+    }, []);
 
     const sendMessage = async (userInput: string) => {
         const message = userInput;
 
         setIsLoading(true);
         setDots(0);
-
         // Faz a requisição
-        const response = await fetch('https://autocareia.azurewebsites.net/chatbot', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ mensagem: message }),
-        });
+        try {
+            const response = await fetch('https://autocareia.azurewebsites.net/chatbot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ mensagem: message }),
+            });
 
-        const data = await response.json();
-        setMessages(prevMessages => [...prevMessages, `AutoCare Bot: ${data.resposta}`]);
-        setIsLoading(false);
+            const data = await response.json();
+            setMessages(prevMessages => [...prevMessages, `AutoCare Bot: ${data.resposta}`]);
+            setIsLoading(false);
+        } catch (error) {
+            toast.error("Chatbot indisponível",  {theme: (isDarkMode?"dark":"light")})
+            setTimeout(() => setIsLoading(false), 3000);
+        }
     };
 
     const formatMessage = (text: string) => {
@@ -53,13 +74,14 @@ export default function chatbot() {
     }, [messages]);
 
     useEffect(() => {
-        let interval: number;
+        let interval: NodeJS.Timeout;
         if (isLoading) {
             interval = setInterval(() => {
                 setDots(prevDots => (prevDots + 1) % 4);3
             }, 400);
 
         }
+        
         return () => {
             clearInterval(interval);
         };

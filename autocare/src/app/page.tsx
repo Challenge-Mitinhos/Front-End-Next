@@ -9,6 +9,11 @@ import { useContext, useEffect, useState } from "react";
 export default function Home() {
   const [isMobile, setIsMobile] = useState(window.innerWidth<821)
   const context = useContext(LoginContext);
+
+  if (!context) {
+    throw new Error("useLoginContext deve ser usado dentro de um LoginProvider");
+  }
+
   const { toggleLogin } = context;
 
   const handleResize = () => {

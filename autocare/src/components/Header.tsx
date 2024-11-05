@@ -17,9 +17,11 @@ type HeaderProps = {
   terceiroLinkDestino?: string;
   ultimoLink?: string;
   ultimoLinkDestino?: string;
+  perfil?:boolean;
+  sair?:boolean;
 };
 
-export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,segundoLinkDestino,terceiroLink,terceiroLinkDestino,ultimoLink,ultimoLinkDestino}: HeaderProps) {
+export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,segundoLinkDestino,terceiroLink,terceiroLinkDestino,ultimoLink,ultimoLinkDestino,perfil,sair}: HeaderProps) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const context = useContext(LoginContext);
@@ -65,14 +67,31 @@ export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,seg
               </Link>
             </li>
           )}
-          {login === "logado" && (
+          {login === "logado" && !perfil && (
+                <li>
+                  <Link href={"/perfil"}>
+                    <HeaderComponent name="Perfil" strong />
+                  </Link>
+                </li>
+          )}
+          {login === "logado" && sair && (
+                <li>
+                  <Link href={"/perfil"}>
+                    <HeaderComponent name="Sair" onClick={() => {
+                    toggleLogin()
+                    localStorage.removeItem("id")
+                  }} strong />
+                  </Link>
+                </li>
+          )}
+          {/* {login === "logado" && (
             <li>
               <HeaderComponent name="Sair" onClick={() => {
                     toggleLogin()
                     localStorage.removeItem("id")
                   }} strong />
             </li>
-          )}
+          )} */}
         </ul>
       </nav>
       <div className="buttonsMobile">
@@ -113,6 +132,13 @@ export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,seg
                   </Link>
                 </li>
               )}
+              {terceiroLink && (
+                <li className="self-start">
+                  <Link href={terceiroLinkDestino || ""}>
+                    <HeaderComponent name={terceiroLink} fontSize="1.4em"/>
+                  </Link>
+                </li>
+              )}
               {login === "deslogado" && (
                 <li className="self-start">
                   <Link href={ultimoLinkDestino || ""}>
@@ -120,14 +146,21 @@ export default function Header({primeiroLink,primeiroLinkDestino,segundoLink,seg
                   </Link>
                 </li>
               )}
-              {login === "logado" && (
+              {login === "logado" && !perfil && (
+                <li className="self-start">
+                  <Link href={"/perfil"}>
+                    <HeaderComponent name="Perfil" strong fontSize="1.7em"/>
+                  </Link>
+                </li>
+              )}
+              {/* {login === "logado" && (
                 <li className="self-start">
                   <HeaderComponent name="Sair" onClick={() => {
                     toggleLogin()
                     localStorage.removeItem("id")
                   }} strong fontSize="1.7em" />
                 </li>
-              )}
+              )} */}
             </ul>
           </div>
         )}

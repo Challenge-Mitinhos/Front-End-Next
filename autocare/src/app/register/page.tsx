@@ -99,22 +99,21 @@ export default function register() {
     }, []);
 
     const handleClickRegister = (values:RegisterValues) => {
-            let nome = values.nome + " " + values.sobrenome
             setLoading(true)
             Axios.post("http://localhost:8080/Java_Web/api/clientes", {
-                nome: nome,
+                nome: values.nome,
+                sobrenome: values.sobrenome,
                 email: values.email,
                 cpf: values.cpf.replace(/\D/g, ""),
                 telefone: values.telefone.replace(/\D/g, ""),
                 senha: values.senha
             }).then((response) => {
                 if (response.status === 201) {
-                    toast.success("Cadastrado bem sucedido.")
+                    toast.success("Cadastrado bem sucedido.", {theme: (isDarkMode?"dark":"light")})
                     navigate.replace('/login')
                     return
                 }
             }).catch(function (error) {
-                console.log(error)
                 toast.error(error.response.data, {
                     theme: (isDarkMode? "dark":"light")
                 })

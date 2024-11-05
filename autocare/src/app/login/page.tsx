@@ -59,7 +59,7 @@ export default function login() {
         navigate.replace("/");
       }
     }).catch(function (error) {
-      console.error(error);
+      toast.error(error.response.data, {theme: (isDarkMode?"dark":"light")});
     });
   };  
 
